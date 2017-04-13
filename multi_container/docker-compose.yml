@@ -1,9 +1,13 @@
 version: '3'
+
 services:
   application:
     build: .
     ports:
       - "4001:4000"
+    depends_on:
+      - postgres
+
   postgres:
     image: "postgres:alpine"
     environment:

@@ -1,17 +1,11 @@
-FROM elixir:slim
+FROM gradle:alpine
 
-EXPOSE 4000
+ADD awesome_application .
 
-RUN mix local.hex --force && \
-  mix local.rebar --force && \
-  mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez --force
+RUN gradle build
 
-WORKDIR /application
+ENV JAVA_OPTS=""
 
-ADD demo_application .
+EXPOSE 8080
 
-RUN mix deps.get
-RUN mix compile
-RUN mix phx.digest
-
-ENTRYPOINT mix phx.server
+ENTRYPOINT exec java $JAVA_OPTS -jar build/libs/app.jar

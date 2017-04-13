@@ -1,0 +1,9 @@
+FROM openjdk:jre-alpine
+
+ENV JAVA_OPTS=""
+
+ADD app.jar /app/app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT exec java $JAVA_OPTS -jar /app/app.jar

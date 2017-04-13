@@ -8,7 +8,7 @@ RUN mix local.hex --force && \
 
 WORKDIR /application
 
-ADD demo_application .
+ADD multi_container_application .
 
 RUN mix deps.get
 RUN mix compile

@@ -1,9 +1,0 @@
-FROM gradle:alpine
-
-ADD awesome_application .
-
-RUN gradle build
-
-ADD Dockerfile.run build/libs/Dockerfile
-
-CMD tar -cf - -C build/libs .
